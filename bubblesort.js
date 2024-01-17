@@ -2,6 +2,13 @@ import { performance } from 'perf_hooks';
 import { generateMostlySortedDataset, generateRandomDataset } from './createdataset.js';
 
 /*
+Mostly sorted data:
+Execution time: 7516.478958 ms
+
+Shuffled data:
+Execution time: 15077.648292 ms
+*/
+/*
 Size: 100,000
 Mostly sorted data:
 Execution time: 7516.478958 ms
@@ -42,6 +49,14 @@ console.log("\n")
 
 //my first implementation of bubblesort
 /*
+Performance average:
+Mostly sorted data:
+Execution time: 16354.787041 ms
+
+Shuffled data:
+Execution time: 28664.322042000003 ms
+*/
+/*
 Size: 100,000
 Performance average:
 Mostly sorted data:
@@ -59,14 +74,17 @@ function naivesort(arr){
       swap = false;
     }
     if(arr[i] > arr[i+1]){
+      //console.log("SWAP! ", arr[i], arr[i+1]);
       var temp = arr[i + 1];
       arr[i+1] = arr[i];
       arr[i] = temp;
       swap = true;
     }
     if(i === count-1){
+      //console.log("Completed one loop!", arr)
       i = -1
       count--;
+      //console.log("Count: ", count)
       if(!swap) break;
     }
   }
