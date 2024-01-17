@@ -1,6 +1,6 @@
-const {
-  performance
-} = require('perf_hooks');
+import { performance } from 'perf_hooks';
+import { generateMostlySortedDataset, generateRandomDataset } from './createdataset.js';
+
 function sort(arr){
   const start = performance.now();
   for(var i = 0; i < arr.length; i++){
@@ -22,40 +22,10 @@ function sort(arr){
   const end = performance.now();
   console.log(`Execution time: ${end - start} ms`);
 }
-// Function to generate a mostly sorted dataset
-function generateMostlySortedDataset(size) {
-  const dataset = [];
-  for (let i = 1; i <= size; i++) {
-    dataset.push(i);
-  }
-  // Introduce a few random swaps to make it mostly sorted
-  for (let i = 0; i < size / 10; i++) {
-    const index1 = Math.floor(Math.random() * size);
-    const index2 = Math.floor(Math.random() * size);
-    [dataset[index1], dataset[index2]] = [dataset[index2], dataset[index1]];
-  }
-  return dataset;
-}
-
-// Function to generate a randomly shuffled dataset
-function generateRandomDataset(size) {
-  const dataset = [];
-  for (let i = 1; i <= size; i++) {
-    dataset.push(i);
-  }
-  // Shuffle the array
-  for (let i = size - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [dataset[i], dataset[j]] = [dataset[j], dataset[i]];
-  }
-  return dataset;
-}
 
 let mostlySortedDataset = generateMostlySortedDataset(5000);
 let randomlyShuffledDataset = generateRandomDataset(5000);
 
-//console.log("Mostly Sorted Dataset:", mostlySortedDataset);
-//console.log("Randomly Shuffled Dataset:", randomlyShuffledDataset);
 console.log("\n")
 console.log("Mostly sorted data:")
 sort(mostlySortedDataset)
