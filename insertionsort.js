@@ -3,22 +3,23 @@ import { generateMostlySortedDataset, generateRandomDataset } from './createdata
 
 function sort(arr){
   const start = performance.now();
-  for(var i = 0; i < arr.length; i++){
-    for(var j = i + 1; j < arr.length; j++){
-      if(arr[i] > arr[j]){
-        var temp = arr[i];
-        arr[i] = arr[j];
-        arr[j] = temp;
-      }
+  for(var i = 1; i < arr.length; i++){
+    var current = arr[i];
+    for(var j = i - 1; j >= 0 && arr[j] > current; j--){
+      //j+1 is i (current)
+      //i is already saved as current
+      //j is current index
+      arr[j+1] = arr[j];
     }
+    arr[j+1] = current;
   }
-  //console.log(arr);
+  console.log(arr);
   const end = performance.now();
   console.log(`Execution time: ${end - start} ms`);
 }
 
-let mostlySortedDataset = generateMostlySortedDataset(500);
-let randomlyShuffledDataset = generateRandomDataset(500);
+let mostlySortedDataset = generateMostlySortedDataset(10);
+let randomlyShuffledDataset =   generateRandomDataset(10);
 
 console.log("\n")
 console.log("Mostly sorted data:")
