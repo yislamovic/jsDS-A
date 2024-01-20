@@ -2,12 +2,12 @@ import { performance } from 'perf_hooks';
 import { generateMostlySortedDataset, generateRandomDataset } from './createdataset.js';
 
 /*
-Size: 100,000
+Size: 10000
 Mostly sorted data:
-Execution time: 7516.478958 ms
+Execution time: 65.68 ms
 
 Shuffled data:
-Execution time: 15077.648292 ms
+Execution time: 63.66 ms
 */
 function sort(arr) {
   const start = performance.now();
@@ -26,11 +26,11 @@ function sort(arr) {
     count--;
   } while (swap);
   const end = performance.now();
-  console.log(`Execution time: ${end - start} ms`);
+  console.log(`Execution time: ${(end - start).toFixed(2)} ms`);
 }
 
-const mostlySortedDataset = generateMostlySortedDataset(100000);
-const randomlyShuffledDataset = generateRandomDataset(100000);
+const mostlySortedDataset = generateMostlySortedDataset(10000);
+const randomlyShuffledDataset =   generateRandomDataset(10000);
 
 console.log("\n")
 console.log("Mostly sorted data:")
@@ -71,5 +71,5 @@ function naivesort(arr){
     }
   }
   const end = performance.now();
-  console.log(`Execution time: ${end - start} ms`);
+  console.log(`Execution time: ${(end - start).toFixed(2)} ms`);
 }
