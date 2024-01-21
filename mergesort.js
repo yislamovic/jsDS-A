@@ -9,12 +9,13 @@ Shuffled data:
 Execution time: 24.10 ms
 */
 function sort(arr){
-  const start = performance.now();
-  
-
-
-  const end = performance.now();
-  console.log(`Execution time: ${(end - start).toFixed(2)} ms`);
+  if(arr.length <= 1){
+    return arr;
+  }
+  const mid = Math.floor(arr.length / 2);
+  const firstHalf = arr.slice(0, mid);
+  const secondHalf = arr.slice(mid);
+  return mergeSortedArrays(sort(firstHalf), sort(secondHalf))
 }
 function mergeSortedArrays(n, m) {
     let i = 0, j = 0;
@@ -39,19 +40,22 @@ function mergeSortedArrays(n, m) {
         arr.push(m[j]);
         j++;
     }
-
     return arr;
 }
 
-console.log(mergeSortedArrays([1,3,5,7,9], [2,4,6,8,10]));
-
-let mostlySortedDataset = generateMostlySortedDataset(10000);
-let randomlyShuffledDataset =   generateRandomDataset(10000);
+let mostlySortedDataset = generateMostlySortedDataset(100);
+let randomlyShuffledDataset =   generateRandomDataset(100);
 
 console.log("\n")
 console.log("Mostly sorted data:")
+const start = performance.now();
 sort(mostlySortedDataset)
+const end = performance.now();
+console.log(`Execution time: ${(end - start).toFixed(2)} ms`);
 console.log("\n")
 console.log("Shuffled data:")
+const start2 = performance.now();
 sort(randomlyShuffledDataset)
+const end2 = performance.now();
+console.log(`Execution time: ${(end2 - start2).toFixed(2)} ms`);
 console.log("\n")
