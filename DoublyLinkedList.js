@@ -103,15 +103,33 @@ class DoublyLinkedList{
         if(index < 0 || index >= this.length) return false;
         if(index === 0) return !!this.unshift(val);
         if(index === this.length) return !!this.push(val);
+
         var newNode = new Node(val);
         var node = this.get(index - 1);
         var nextNode = node.next;
-        node.next = newNode;
-        newNode.prev = node;
-        newNode.next = nextNode;
-        nextNode.prev = newNode;
+
+        node.next = newNode, newNode.prev = node;
+        newNode.next = nextNode, nextNode.prev = newNode;
         this.length += 1;
         return true;
+    }
+    remove(index){
+        if(index < 0 || index >= this.length) return false;
+        if(index === 0) return !!this.shift();
+        if(index === this.length) return !!this.pop();
+
+        var nodeToRemove = this.get(index);
+        var nodeAhead = nodeToRemove.next;
+        var nodeBefore = nodeToRemove.prev;
+
+        nodeAhead.prev = nodeBefore;
+        nodeBefore.next = nodeAhead;
+
+        nodeToRemove.prev = null;
+        nodeToRemove.next = null;
+
+        this.length -= 1;
+        return nodeToRemove;
     }
 }
 
@@ -120,7 +138,9 @@ for(var i = 0; i < 10; i++){
     ls.push(i);
 }
 console.log(ls.insert("hello", 5));
-console.log(ls.get(5))
+console.log(ls.remove(5))
+console.log(ls)
+console.log("END")
 
 
 
