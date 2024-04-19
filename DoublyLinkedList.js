@@ -91,13 +91,22 @@ class DoublyLinkedList{
         }
         return current;
     }
+    set(val, index){
+        var node = this.get(index);
+        if(node){
+            node.val = val;
+            return true;
+        }
+        else return false;
+    }
 }
 
 var ls = new DoublyLinkedList();
 for(var i = 0; i < 10; i++){
     ls.push(i);
 }
-console.log(ls.get(10));
+console.log(ls.set(1,0));
+console.log(ls.get(0))
 
 
 
