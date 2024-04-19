@@ -99,14 +99,28 @@ class DoublyLinkedList{
         }
         else return false;
     }
+    insert(val, index){
+        if(index < 0 || index >= this.length) return false;
+        if(index === 0) return !!this.unshift(val);
+        if(index === this.length) return !!this.push(val);
+        var newNode = new Node(val);
+        var node = this.get(index - 1);
+        var nextNode = node.next;
+        node.next = newNode;
+        newNode.prev = node;
+        newNode.next = nextNode;
+        nextNode.prev = newNode;
+        this.length += 1;
+        return true;
+    }
 }
 
 var ls = new DoublyLinkedList();
 for(var i = 0; i < 10; i++){
     ls.push(i);
 }
-console.log(ls.set(1,0));
-console.log(ls.get(0))
+console.log(ls.insert("hello", 5));
+console.log(ls.get(5))
 
 
 
