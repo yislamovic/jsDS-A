@@ -24,10 +24,32 @@ class DoublyLinkedList{
         this.length += 1;
         return this;
     }
+    pop(){
+        if(!this.head) return undefined;
+        var tail = this.tail;
+
+        if(this.length === 1){
+            this.tail = null;
+            this.head = null;
+        }
+        else{
+            this.tail = tail.prev;
+            this.tail.next = null;
+            tail.prev = null;
+        }
+        
+        this.length -= 1;
+        return tail;
+    }
 }
 
 var ls = new DoublyLinkedList();
 ls.push(1);
-console.log(ls.push(2))
-console.log(ls.tail)
+ls.push(2);
+ls.push(3);
+
+console.log(ls.pop())
+console.log(ls)
+
+
 
