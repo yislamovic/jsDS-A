@@ -131,15 +131,28 @@ class DoublyLinkedList{
         this.length -= 1;
         return nodeToRemove;
     }
+    reverse(){
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+        
+        var current = this.head;
+        for(var i = 0; i < this.length; i++){
+            var prev = current.prev, next = current.next;
+            current.next = prev;
+            current.prev = next;
+            current = current.next;
+        }
+        return this;
+    }
 }
 
 var ls = new DoublyLinkedList();
 for(var i = 0; i < 10; i++){
     ls.push(i);
 }
-console.log(ls.insert("hello", 5));
-console.log(ls.remove(5))
-console.log(ls)
+
+console.log(ls.reverse())
 console.log("END")
 
 
