@@ -1,3 +1,4 @@
+
 class Node {
     constructor(value) {
         this.val = value;
@@ -51,6 +52,39 @@ class BinarySearchTree {
         }
         return (current) ? true : false;
     }
+    BFS(){
+        var q = [], data = [];
+        var node = this.root;
+        q.push(node);
+        while(q.length)
+        {
+            node = q.shift();
+            data.push(node.val);
+            if(node.left) q.push(node.left);
+            if(node.right) q.push(node.right);
+        }
+        return data;
+    }
+    DFSPreOrder(){
+        var data = [];
+        function traverse(node){
+            data.push(node.val);
+            if(node.left) traverse(node.left)
+            if(node.right) traverse(node.right)
+        }
+        traverse(this.root);
+        return data;
+    }
+    DFSPostOrder(){
+        var data = [];
+        function traverse(node){
+            if(node.left) traverse(node.left)
+            if(node.right) traverse(node.right)
+            data.push(node.val);
+        }
+        traverse(this.root);
+        return data;
+    }
 
     printTree() {
         this.printNode(this.root, 0);
@@ -81,5 +115,5 @@ bst.insert(7);
 bst.insert(12);
 bst.insert(20);
 bst.printTree();
-console.log(bst.find(8))
+console.log(bst.DFSPostOrder())
 console.log("END")
