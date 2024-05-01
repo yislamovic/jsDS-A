@@ -35,15 +35,41 @@ class Graph{
         }
         delete this.adjacencyList[vertex];
     }
+    DFT(start){
+        const result = [] ;
+        const visited = {};
+        const adjacencyList = this.adjacencyList;
+
+        function dfs(vertex){
+            if(!vertex) return null; 
+            visited[vertex] = true;
+            result.push(vertex);
+            adjacencyList[vertex].forEach(neighbor => { // vertex A [B,C]
+                if(!visited[neighbor]){ //Callstack => .foreach[B,C]
+                    return dfs(neighbor)//          [B].foreach[A,D] //A will not be visited since it was already visited
+                }                       
+            })
+        }
+        dfs(start)
+        return result;
+    }
 }
 let g = new Graph();
-g.addVertex("Toronto")
-g.addVertex("Tokyo")
-g.addVertex("San Fransisco")
+g.addVertex("A");
+g.addVertex("B");
+g.addVertex("C");
+g.addVertex("D");
+g.addVertex("E");
+g.addVertex("F");
 
-g.addEdge("Toronto", "Tokyo")
-g.addEdge("Tokyo", "San Fransisco")
-g.removeVertex("Tokyo");
-//g.removeEdge("Toronto", "Tokyo")
+g.addEdge("A","B");
+g.addEdge("A","C");
+g.addEdge("B","D");
+g.addEdge("C","E");
+g.addEdge("D","E");
+g.addEdge("D","F");
+g.addEdge("E","F");
+
+console.log(g.DFT("A"));
 console.log(g.adjacencyList)
 console.log("END")
