@@ -35,6 +35,7 @@ class Graph{
         }
         delete this.adjacencyList[vertex];
     }
+    //Depth first traversal (recursive)
     DFT(start){
         const result = [] ;
         const visited = {};
@@ -53,6 +54,7 @@ class Graph{
         dfs(start)
         return result;
     }
+    //Depth first traversal
     DFTIterative(start){
         let stack = [], result = [];
         const visited = {};
@@ -72,6 +74,7 @@ class Graph{
         }
         return result;
     }
+    //breadth first traversal (iterative)
     BFT(start){
         let queue = [], result = [];
         const visited = {};
