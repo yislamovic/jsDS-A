@@ -65,10 +65,28 @@ class Graph{
                 result.push(vertex);
                 visited[vertex] = true;
                 adjacencyList[vertex].forEach(vertices => {
-                    stack.push(vertices)
+                    stack.push(vertices);
                 })
             }
             
+        }
+        return result;
+    }
+    BFT(start){
+        let queue = [], result = [];
+        const visited = {};
+        const adjacencyList = this.adjacencyList;
+
+        queue.push(start);
+        while(queue.length){
+            let vertex = queue.shift();
+            if(!visited[vertex]){
+                result.push(vertex);
+                visited[vertex] = true;
+                adjacencyList[vertex].forEach(vertices => {
+                    queue.push(vertices);
+                })
+            }
         }
         return result;
     }
@@ -89,6 +107,6 @@ g.addEdge("D","E");
 g.addEdge("D","F");
 g.addEdge("E","F");
 
-console.log(g.DFTIterative("A"));
+console.log(g.BFT("A"));
 console.log(g.adjacencyList)
 console.log("END")
