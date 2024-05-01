@@ -27,6 +27,14 @@ class Graph{
             })
         return newArr;
     }
+    removeVertex(vertex){
+        if(!this.adjacencyList[vertex]) return;
+        while(this.adjacencyList[vertex].length){
+            const adjacencyVertex = this.adjacencyList[vertex].pop();
+            this.removeEdge(vertex, adjacencyVertex);
+        }
+        delete this.adjacencyList[vertex];
+    }
 }
 let g = new Graph();
 g.addVertex("Toronto")
@@ -35,7 +43,7 @@ g.addVertex("San Fransisco")
 
 g.addEdge("Toronto", "Tokyo")
 g.addEdge("Tokyo", "San Fransisco")
-
-g.removeEdge("Toronto", "Tokyo")
+g.removeVertex("Tokyo");
+//g.removeEdge("Toronto", "Tokyo")
 console.log(g.adjacencyList)
 console.log("END")
