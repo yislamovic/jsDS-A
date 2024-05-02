@@ -55,10 +55,10 @@ export default class PriorityQueue{
         return root;
     }
 }
-var er = new PriorityQueue();
-er.enqueue("common cold", 1);
-er.enqueue("gunshot wound", 5);
-er.enqueue("high fever", 2);
-console.log(er.dequeue());
-console.log(er.values);
-console.log("END")
+// var er = new PriorityQueue();
+// er.enqueue("common cold", 1);
+// er.enqueue("gunshot wound", 5);
+// er.enqueue("high fever", 2);
+// console.log(er.dequeue());
+// console.log(er.values);
+// console.log("END")
